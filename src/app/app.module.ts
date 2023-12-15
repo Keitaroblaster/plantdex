@@ -8,6 +8,8 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageMyPlantsComponent } from './pages/page-my-plants/page-my-plants.component';
 import { PageAdminComponent } from './pages/page-admin/page-admin.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
