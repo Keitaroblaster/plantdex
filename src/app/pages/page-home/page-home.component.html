@@ -1,8 +1,13 @@
 <div class="container">
     <h1 class="title">Plantdex</h1>
+    <button (click)="afficheDiv()">Cliquez</button>
+    <div [title]="monTitle" *ngIf="isAfficheDiv">Liste des Plantes</div>
+    <span *ngIf="isAfficheDiv">
     <div class="container-plants">
-      <ul>
-        <li *ngFor="let plant of plantsToDisplay">{{ plant.nom }}</li>
-      </ul>
+      <app-card-plant 
+      *ngFor="let plantData of plantsToDisplay" 
+      [plant]="plantData"
+      ></app-card-plant>
     </div>
-  </div>
+    </span>
+</div>

@@ -9,6 +9,9 @@ import { PlantsService } from 'src/app/services/plants.service';
 })
 
 export class PageHomeComponent implements OnInit {
+  isAfficheDiv = false;
+  monTitle = "je plane à donf";
+
   plantsToDisplay: Plant[] = [];
 
   constructor(private plantsService: PlantsService ) {}
@@ -19,4 +22,9 @@ export class PageHomeComponent implements OnInit {
       this.plantsToDisplay = [...data];
     });
   }
+
+  afficheDiv(){
+    this.isAfficheDiv = !this.isAfficheDiv;
+  }
+  
 }
