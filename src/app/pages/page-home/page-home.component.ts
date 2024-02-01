@@ -61,9 +61,9 @@ export class PageHomeComponent implements OnInit {
     
     this.plantsToDisplay.sort((a, b) => {
       if (this.sortOfPlants) {
-        return a.nom.localeCompare(b.nom);
-      } else {
         return b.nom.localeCompare(a.nom);
+      } else {
+        return a.nom.localeCompare(b.nom);
       }
     });
   

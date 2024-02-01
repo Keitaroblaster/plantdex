@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-
 @Component({
   selector: 'app-filter-side-bar',
   templateUrl: './filter-side-bar.component.html',
