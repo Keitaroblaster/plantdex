@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { __values } from 'tslib';
+
 
 @Component({
   selector: 'app-filter-side-bar',
@@ -10,7 +10,7 @@ export class FilterSideBarComponent {
   @Input() categoriesToDisplay!: string[]
   @Output() categoriesToFilter = new EventEmitter<string[]>();
   checkedCategories : string [] = [];
-  @Output() searchText = new EventEmitter<string>();
+  
 
   onCheckedCategories(event:Event) {
     const target = event.target as HTMLInputElement;
@@ -34,13 +34,5 @@ export class FilterSideBarComponent {
     
     this.categoriesToFilter.emit(this.checkedCategories)
   }
-
-  onSearch(event:Event): void {
-    const searchTextEntered = (event.target as HTMLInputElement).value;
-    this.searchText.emit(searchTextEntered);
-    console.log("entrée", searchTextEntered);
-    
-  }
-  
 
 }
