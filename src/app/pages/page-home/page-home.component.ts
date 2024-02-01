@@ -9,10 +9,12 @@ import { PlantsService } from 'src/app/services/plants.service';
 })
 
 export class PageHomeComponent implements OnInit {
-  isAfficheDiv = false;
-  monTitle = "je plane à donf";
-
   plantsToDisplay: Plant[] = [];
+  categoriesToSend: string[] = [];
+  categorieToDisplay: Plant[] = [];
+  searchText: string = '';
+  sortOfPlants: boolean = true;
+
 
   constructor(private plantsService: PlantsService ) {}
 
@@ -20,11 +22,51 @@ export class PageHomeComponent implements OnInit {
     this.plantsService.getPlants().subscribe((data) => {
       console.log(data);
       this.plantsToDisplay = [...data];
+      this.categoriesToSend = this.getCategoriesFromPlants(data);
+      this.categorieToDisplay = [...data];
     });
   }
 
-  afficheDiv(){
-    this.isAfficheDiv = !this.isAfficheDiv;
+  getCategoriesFromPlants(plants:Plant[]): string[]{
+    const catPlantSet = new Set(plants.map(plant => plant.categorie));
+    const catPlantArray = Array.from(catPlantSet); // on peut utiliser le spread opérateur [...catPlantSet]
+    
+    return catPlantArray;
   }
+
+  filterPlantsByCategories(categories:string[]) {
+    this.plantsToDisplay = this.categorieToDisplay.filter(
+      (a) => categories.includes(a.categorie)
+    );
+
+    console.log('dans parent', this.plantsToDisplay);
+    
+  }
+
+  onSearchTextType(searchtextEntered:string): void{
+    this.searchText = searchtextEntered;
+    //console.log("sortie", this.searchText);
+    
+  }
+
+  get selectedPlant():Plant[] {
+    return this.plantsToDisplay.filter(
+      (plant) =>
+    plant.nom.toLowerCase().includes(this.searchText.toLowerCase())  
+    );
+  }
+
+  onSortAlphaClick(): void {
+    this.sortOfPlants = !this.sortOfPlants;
+    
+    this.plantsToDisplay.sort((a, b) => {
+      if (this.sortOfPlants) {
+        return a.nom.localeCompare(b.nom);
+      } else {
+        return b.nom.localeCompare(a.nom);
+      }
+    });
   
+    //console.log('plantes triées', this.plantsToDisplay);
+  }
 }

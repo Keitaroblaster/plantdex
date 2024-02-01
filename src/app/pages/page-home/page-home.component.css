@@ -2,5 +2,7 @@
     display: flex;      /* permet d'afficher en ligne les cartes et soit responsive par rapport à la largeur de l'écran*/
     flex-wrap: wrap;    /* permet de revenir à la ligne quand les lignes de cartes dépasse l'écran*/
     gap: 2rem;          /* permet de mettre des espaces (des gouttieres) entre les cartes*/
-    
+    justify-content: space-between;
+    align-items: center;
 }
+

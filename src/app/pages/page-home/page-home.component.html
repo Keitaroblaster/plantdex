@@ -1,13 +1,29 @@
-<div class="container">
-    <h1 class="title">Plantdex</h1>
-    <button (click)="afficheDiv()">Cliquez</button>
-    <div [title]="monTitle" *ngIf="isAfficheDiv">Liste des Plantes</div>
-    <span *ngIf="isAfficheDiv">
-    <div class="container-plants">
-      <app-card-plant 
-      *ngFor="let plantData of plantsToDisplay" 
-      [plant]="plantData"
-      ></app-card-plant>
+<div class="d-flex">
+
+  <app-filter-side-bar 
+  [categoriesToDisplay]="categoriesToSend" 
+  (categoriesToFilter)="filterPlantsByCategories($event)"
+  ></app-filter-side-bar>
+
+    <div class="container">
+
+      <div class="searchbar">
+        <app-searchbar
+        (searchText)="onSearchTextType($event)"
+        ></app-searchbar>
+      </div>
+
+      <div class="sortbybar">
+        <app-sort-by-bar
+          (sortAlpha)="onSortAlphaClick()"
+        ></app-sort-by-bar>
+      </div>
+    
+        <div class="container-plants">
+          <app-card-plant 
+          *ngFor="let plantData of selectedPlant " 
+          [plant]= "plantData"
+          ></app-card-plant>
+        </div>
     </div>
-    </span>
 </div>
